@@ -1,0 +1,32 @@
+Index: slowmoVideo-0.6/src/slowmoUI/CMakeLists.txt
+===================================================================
+--- slowmoVideo-0.6.orig/src/slowmoUI/CMakeLists.txt
++++ slowmoVideo-0.6/src/slowmoUI/CMakeLists.txt
+@@ -126,22 +126,21 @@ if (UNIX AND NOT APPLE)
+ # create desktop file for KDE/Gnome
+ # desktop file section
+ 	file( WRITE "${PROJECT_BINARY_DIR}/slowmoUI.desktop"
+-"#!/usr/bin/env xdg-open
+-[Desktop Entry]
++"[Desktop Entry]
+ Type=Application
+ Comment=Slow Motion Video
+ Exec=${CMAKE_INSTALL_PREFIX}/bin/slowmoUI
+ GenericName=slowmoVideo
+-Icon=${CMAKE_INSTALL_PREFIX}/share/icons/AppIcon
++Icon=slowmoUI
+ MimeType=
+ Name=slowmoUI
+ Terminal=false
+-Categories=Qt;AudioVideo;Video;\n")
++Categories=Qt;AudioVideo;AudioVideoEditing;\n")
+ 
+ 	#install ( FILES icons/slowmoUI.png DESTINATION share/icons )
+-	install ( FILES res/AppIcon.png DESTINATION share/icons )
++	#install ( FILES res/AppIcon.png DESTINATION share/icons )
+ 	install ( FILES ${PROJECT_BINARY_DIR}/slowmoUI.desktop DESTINATION share/applications
+-		PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
++		PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+ )
+ endif()
+ 

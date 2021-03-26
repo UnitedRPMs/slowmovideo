@@ -1,0 +1,28 @@
+diff -ruN orig/CMakeLists.txt new/CMakeLists.txt
+--- orig/CMakeLists.txt	2021-02-14 07:14:15.000000000 -0600
++++ new/CMakeLists.txt	2021-03-23 23:44:34.850547098 -0600
+@@ -256,8 +256,8 @@
+ 	src/Base/v3d_utilities.h
+ 	src/Math/v3d_linear.h
+ 	src/Math/v3d_linearbase.h
+-    src/lib/libsvflow/src/flowField_sV.h
+-    src/lib/libsvflow/src/flowRW_sV.h
++    src/lib/libsvflow/include/flowField_sV.h
++    src/lib/libsvflow/include/flowRW_sV.h
+ )
+ 
+ add_library(V3D STATIC ${ALL_SRC})
+diff -ruN orig/src/flowBuilder.cpp new/src/flowBuilder.cpp
+--- orig/src/flowBuilder.cpp	2021-02-14 07:14:15.000000000 -0600
++++ new/src/flowBuilder.cpp	2021-03-23 23:42:14.298867476 -0600
+@@ -27,8 +27,8 @@
+ #include<GL/glx.h>
+ #endif
+ 
+-#include "flowRW_sV.h"
+-#include "flowField_sV.h"
++#include "../include/flowRW_sV.h"
++#include "../include/flowField_sV.h"
+ 
+ using namespace V3D;
+ using namespace V3D_GPU;
