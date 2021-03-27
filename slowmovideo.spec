@@ -83,31 +83,35 @@ mv -f  $PWD/v3d-flow-builder-%{commit2}/src/lib/libsvflow-%{commit1}  $PWD/v3d-f
 %build
 
 pushd v3d-flow-builder-%{commit2}
-%cmake \
+mkdir -p v3d-flow-builder-build \
+         build
+
+%cmake -B v3d-flow-builder-build \
 	-DUSE_DBUS=ON \
 	-DDISABLE_INCLUDE_SOURCE=ON \
 	-DENABLE_TESTS=OFF \
 	-DOpenGL_GL_PREFERENCE=GLVND \
 	-Wno-dev
   
-%cmake_build
+%make_build -C v3d-flow-builder-build
 popd
 
-%cmake \
+%cmake -B build \
 	-DCMAKE_BUILD_TYPE=Release \
 	-DENABLE_TESTS=OFF \
 	-Wno-dev
 	
-%cmake_build
+%make_build -C build
 
 %install
 
 pushd v3d-flow-builder-%{commit2}
-%cmake_install
+%make_install -C v3d-flow-builder-build
 popd
 
 
-%cmake_install
+%make_install -C build
+
 for s in 16 32 48 64 96 128 192 256 512; do
    mkdir -pv %{buildroot}%{_datadir}/icons/hicolor/${s}x${s}/apps
    convert -strip -scale ${s}x${s} src/slowmoUI/res/AppIcon.png %{buildroot}%{_datadir}/icons/hicolor/${s}x${s}/apps/slowmoUI.png
